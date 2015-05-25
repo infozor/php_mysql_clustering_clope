@@ -1,4 +1,3 @@
-# zoroom
-zoroom
+# CLOPE Clustering
+CLOPE
 
-Кластеризация категорийных данных: масштабируемый алгоритм CLOPE
