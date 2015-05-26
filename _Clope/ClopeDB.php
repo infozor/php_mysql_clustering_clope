@@ -541,7 +541,7 @@ class ClopeDB extends DB
       ");
         $query = $this->query($sqlstr);
         
-        $rows = null;
+        $data = null;
         while ($array = mysql_fetch_row($query)) {
             $data[] = $array;
         }

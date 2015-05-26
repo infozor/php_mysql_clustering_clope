@@ -29,10 +29,9 @@ class Test
         
         // обнуляем таблицу sources
         $ClopeDB = new ClopeDB();
+
         
-        $sources = $ClopeDB->selectFromSources();
-        
-        $ClopeDB->query("SET NAMES cp1251");
+      //  $ClopeDB->query("SET NAMES cp1251");
         
         // удаляем все записи в БД
         $ClopeDB->allEmpty();
@@ -43,6 +42,7 @@ class Test
         $sources = fread($handle, filesize($file_sources));
         $sources = str_replace("\r", "", $sources);
         $read_array = explode("\n", $sources);
+     
         
         $sources_array = array();
         
