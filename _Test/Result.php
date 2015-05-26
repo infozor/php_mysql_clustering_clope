@@ -37,8 +37,11 @@ class Result
         $sources = $ClopeDB->selectFromSources();
         
         session_start();
-        $time = $_SESSION['time_end'] - $_SESSION['time_start'];
-        printf('Время выполнения %.4F сек.', $time);
+        if (isset($_SESSION['time_end'])&&isset($_SESSION['time_start']))
+        {
+          $time = $_SESSION['time_end']-$_SESSION['time_start'];
+          printf('Время выполнения %.4F сек.', $time);
+        }
         
         echo '<br>';
         echo '<br>';
