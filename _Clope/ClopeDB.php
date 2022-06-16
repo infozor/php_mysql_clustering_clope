@@ -111,7 +111,7 @@ class ClopeDB extends DB
         $query = $this->query($sqlstr);
         
         $rows = null;
-        while ($array = mysql_fetch_row($query)) {
+        while ($array = mysqli_fetch_row($query)) {
             $data[] = $array;
         }
         
@@ -162,7 +162,7 @@ class ClopeDB extends DB
           transactions
       ");
         $query = $this->query($sqlstr);
-        $array = mysql_fetch_row($query);
+        $array = mysqli_fetch_row($query);
         return $array[0];
     }
 
@@ -181,7 +181,7 @@ class ClopeDB extends DB
         $query = $this->query($sqlstr);
         
         $items = null;
-        while ($array = mysql_fetch_row($query, MYSQL_ASSOC)) {
+        while ($array = mysqli_fetch_assoc($query)) {
             $items[] = $array['item'];
         }
         
@@ -203,7 +203,7 @@ class ClopeDB extends DB
         $query = $this->query($sqlstr);
         
         $rows = null;
-        while ($array = mysql_fetch_row($query, MYSQL_ASSOC)) {
+        while ($array = mysqli_fetch_assoc($query)) {
             $rows[] = $array['item'];
         }
         return $rows;
@@ -304,7 +304,7 @@ class ClopeDB extends DB
         cluster_transactions.cluster_id = %s
       ", $cluster_id);
         $query = $this->query($sqlstr);
-        $array = mysql_fetch_row($query);
+        $array = mysqli_fetch_row($query);
         return ! (bool) $array[0];
     }
 
@@ -351,7 +351,7 @@ class ClopeDB extends DB
         cluster_transactions.transaction_id = %s
       ", $cluster_id, $transaction_id);
         $query = $this->query($sqlstr);
-        $array = mysql_fetch_row($query);
+        $array = mysqli_fetch_row($query);
         return (bool) $array[0];
     }
 
@@ -364,7 +364,7 @@ class ClopeDB extends DB
           clusters
       ");
         $query = $this->query($sqlstr);
-        $array = mysql_fetch_row($query);
+        $array = mysqli_fetch_row($query);
         return $array[0];
     }
 
@@ -383,7 +383,7 @@ class ClopeDB extends DB
         $query = $this->query($sqlstr);
         
         $rows = null;
-        while ($array = mysql_fetch_row($query, MYSQL_ASSOC)) {
+        while ($array = mysqli_fetch_assoc($query)) {
             $rows[] = $array;
         }
         return $rows;
@@ -402,7 +402,7 @@ class ClopeDB extends DB
         $query = $this->query($sqlstr);
         
         $rows = null;
-        while ($array = mysql_fetch_row($query, MYSQL_ASSOC)) {
+        while ($array = mysqli_fetch_assoc($query)) {
             $rows[] = $array;
         }
         return $rows;
@@ -420,7 +420,7 @@ class ClopeDB extends DB
         cluster_transactions.cluster_id = %s
       ", $cluster_id);
         $query = $this->query($sqlstr);
-        $array = mysql_fetch_row($query);
+        $array = mysqli_fetch_row($query);
         return $array[0];
     }
 
@@ -440,7 +440,7 @@ class ClopeDB extends DB
         $query = $this->query($sqlstr);
         
         $rows = null;
-        while ($array = mysql_fetch_row($query, MYSQL_ASSOC)) {
+        while ($array = mysqli_fetch_assoc($query)) {
             $rows[] = $array;
         }
         return $rows;
@@ -485,7 +485,7 @@ class ClopeDB extends DB
         cluster_transactions.transaction_id = %s
       ", $transaction_id);
         $query = $this->query($sqlstr);
-        $array = mysql_fetch_row($query);
+        $array = mysqli_fetch_row($query);
         return ! (bool) $array[0];
     }
 
@@ -516,7 +516,7 @@ class ClopeDB extends DB
         cluster_transactions.transaction_id = %s
       ", $transaction_id);
         $query = $this->query($sqlstr);
-        $array = mysql_fetch_row($query);
+        $array = mysqli_fetch_row($query);
         return $array[0];
     }
 
@@ -542,7 +542,7 @@ class ClopeDB extends DB
         $query = $this->query($sqlstr);
         
         $data = null;
-        while ($array = mysql_fetch_row($query)) {
+        while ($array = mysqli_fetch_row($query)) {
             $data[] = $array;
         }
         return $data;
@@ -561,7 +561,7 @@ class ClopeDB extends DB
       ", $cluster_id);
         $query = $this->query($sqlstr);
         $rows = null;
-        while ($array = mysql_fetch_row($query, MYSQL_ASSOC)) {
+        while ($array = mysqli_fetch_assoc($query)) {
             $rows[] = $array;
         }
         return $rows;

@@ -1,7 +1,8 @@
 <?php
+
 namespace _Test;
-$cur_path = empty($_SERVER['VHOST_DIR']) ? dirname(__FILE__) . '/' : $_SERVER['VHOST_DIR'] .
-         '/';
+
+$cur_path = empty($_SERVER['VHOST_DIR']) ? dirname(__FILE__) . '/' : $_SERVER['VHOST_DIR'] . '/';
 $pos = strpos($cur_path, '_Test');
 $place_path = substr($cur_path, 0, $pos);
 $place_path = str_replace("\\", "/", $place_path);
@@ -18,46 +19,48 @@ use _Clope\Clope;
 
 class Result
 {
-
-    function __construct ()
-    {
-        $this->root_path = ROOT_PATH;
-    }
-
-    function execute ()
-    {
-        ?>
+	function __construct()
+	{
+		$this->root_path = ROOT_PATH;
+	}
+	function execute()
+	{
+		?>
 <a href="./start.php">Старт</a>
 <br>
 <br>
 <?php
-        
-        $ClopeDB = new ClopeDB();
-        
-        $sources = $ClopeDB->selectFromSources();
-        
-        session_start();
-        if (isset($_SESSION['time_end'])&&isset($_SESSION['time_start']))
-        {
-          $time = $_SESSION['time_end']-$_SESSION['time_start'];
-          printf('Время выполнения %.4F сек.', $time);
-        }
-        
-        echo '<br>';
-        echo '<br>';
-        
-        echo 'Исходные данные:' . '<br>';
-        
-        echo '<br>';
-        
-        foreach ($sources as $source) {
-            echo $source[1] . "<br>";
-        }
-        
-        echo '<br>';
-        
-        $clusters = $ClopeDB->getClusters();
-        ?>
+		
+		$ClopeDB = new ClopeDB();
+		
+		$sources = $ClopeDB->selectFromSources();
+		
+		session_start();
+		if (isset($_SESSION['time_end']) && isset($_SESSION['time_start']))
+		{
+			$time = $_SESSION['time_end'] - $_SESSION['time_start'];
+			printf('Время выполнения %.4F сек.', $time);
+		}
+		
+		echo '<br>';
+		echo '<br>';
+		
+		echo 'Исходные данные:' . '<br>';
+		
+		echo '<br>';
+		
+		if (!is_null($sources))
+		{
+			foreach ( $sources as $source )
+			{
+				echo $source[1] . "<br>";
+			}
+		}
+		
+		echo '<br>';
+		
+		$clusters = $ClopeDB->getClusters();
+		?>
 <table width="200" border="1">
 	<tr>
 		<td>id</td>
@@ -67,34 +70,39 @@ class Result
 		<td>транзакции</td>
 	</tr>
     <?php
-        echo 'Кластеры:';
-        foreach ($clusters as $cluster) {
-            echo '<tr>';
-            foreach ($cluster as $elem) {
-                echo '<td>' . $elem . '</td>';
-            }
-            echo '<td>';
-            $clusterTransactions = $ClopeDB->getClusterTransactions(
-                    $cluster['id']);
-            foreach ($clusterTransactions as $clusterTransaction) {
-                ?>
+		echo 'Кластеры:';
+		
+		if (!is_null($clusters))
+		{
+			foreach ( $clusters as $cluster )
+			{
+				echo '<tr>';
+				foreach ( $cluster as $elem )
+				{
+					echo '<td>' . $elem . '</td>';
+				}
+				echo '<td>';
+				$clusterTransactions = $ClopeDB->getClusterTransactions($cluster['id']);
+				foreach ( $clusterTransactions as $clusterTransaction )
+				{
+					?>
         <?php
-                // echo $clusterTransaction['transaction_id'];
-                $transactionItems = $ClopeDB->getTransactionItems(
-                        $clusterTransaction['transaction_id']);
-                ?>
+					// echo $clusterTransaction['transaction_id'];
+					$transactionItems = $ClopeDB->getTransactionItems($clusterTransaction['transaction_id']);
+					?>
         <?php
-                echo implode($transactionItems);
-                ?>
+					echo implode($transactionItems);
+					?>
         <br>
         <?php
-            }
-            echo '</td>';
-            echo '</tr>';
-        }
-        ?>
+				}
+				echo '</td>';
+				echo '</tr>';
+			}
+		}
+		?>
 </table>
 <?php
-    }
+	}
 }
 
