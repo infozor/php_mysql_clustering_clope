@@ -52,5 +52,5 @@ git clone git://github.com/infozor/php_mysql_clustering_clope.git
 
 
   [1]: http://www.basegroup.ru/library/analysis/clusterization/clope/
-  [2]: http://inforub.ru
-  [3]: http://inforub.ru/result.php
+  [2]: http://clope.sitechange.ru
+  [3]: http://clope.sitechange.ru/result.php
